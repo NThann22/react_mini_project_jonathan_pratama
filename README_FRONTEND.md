@@ -23,7 +23,7 @@ sebutkan daftar tools dan framework yang digunakan dalam bentuk list seperti ini
 - tech stack C
 
 ## Live App Demo
-sertakan link web yang sudah dideploy.
+- Link Web https://react-mini-project-jonathan-pratama.vercel.app/ 
 
 ## Setup 
 sebutkan cara menggunakan project ini di lokal

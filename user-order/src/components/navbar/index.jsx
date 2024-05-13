@@ -1,6 +1,7 @@
 import React, { useContext } from "react"
 import logo from "../../image/logo.png"
 import cart from "../../image/cart.png"
+import admin from '../../image/admin.png'
 import { Link } from "react-router-dom"
 import { PAGE_URL } from "../../utils/constants"
 import { StoreContext } from "../../context/StoreContect"
@@ -33,6 +34,10 @@ export default function Navbar() {
         <Link to={PAGE_URL.CART} className="relative">
           <span className={`absolute top-0 right-0 inline-block transform translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 sm:w-2 sm:h-2 lg:w-2.5 lg:h-2.5 rounded-full ${getTotalCartAmount() === 0 ? "" : "bg-red-500"}`}></span>
           <img src={cart} alt="cart" />
+        </Link>
+
+        <Link to={PAGE_URL.ADMIN}>
+          <img src={admin} alt="admin" />
         </Link>
 
       </div>
