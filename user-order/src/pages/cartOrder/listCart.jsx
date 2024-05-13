@@ -18,7 +18,7 @@ export default function ListCart() {
         .filter(item => cartItems[item._id] > 0)
         .map(item => ({ name: item.name, quantity: cartItems[item._id] }));
 
-      const checkoutInfo = { orderItems, totalAmount: getTotalCartAmount(), customerInfo };
+      const checkoutInfo = { orderItems, totalAmount: getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 10000, customerInfo };
       setCheckoutInfo(checkoutInfo);
 
       setAdminOrders(prevAdminOrders => [...prevAdminOrders, checkoutInfo]);
