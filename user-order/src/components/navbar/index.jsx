@@ -11,14 +11,14 @@ export default function Navbar() {
   const {getTotalCartAmount} = useContext(StoreContext)
 
   return(
-    <nav className="bg-white px-[220px] py-[16px] flex items-center justify-between h-[93px] shadow-md shadow-[#FFAE00]">
+    <nav className="bg-white px-[220px] py-[16px] flex items-center justify-between h-[93px] shadow-md shadow-[#F17228]">
       <div className="flex items-center">
         <Link to={PAGE_URL.HOME}>
           <img src={logo} alt="Logo" />
         </Link>
       </div>
       
-      <div className="flex items-center space-x-4 text-lg font-open_sans font-bold gap-[30px] text-[#FFB30E]">
+      <div className="flex items-center space-x-4 text-lg font-open_sans font-bold gap-[30px] text-[#F17228]">
         <Link to={PAGE_URL.HOME}>
           <span>Home</span>
         </Link>

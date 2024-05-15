@@ -21,7 +21,7 @@ export default function InformationAI() {
             {
               parts: [
                 {
-                  text: "berikan 1 keunikan makanan khas Indoenesia! jelaskan sedikit saja",
+                  text: "berikan informasi tentang 1 keunikan yang ada di makanan khas Indoenesia!",
                 },
               ],
             },

@@ -9,23 +9,33 @@ export default function ListCart() {
   const { setAdminOrders, setCheckoutInfo, getTotalCartAmount, cartItems, menu_list, removeFromCart, setCartItems } = useContext(StoreContext);
   const [customerInfo, setCustomerInfo] = useState({ name: "", tableNumber: "" });
   const [orderSuccess, setOrderSuccess] = useState(false);
+  const [nameError, setNameError] = useState("");
+  const [tableNumberError, setTableNumberError] = useState("");
   const navigate = useNavigate();
 
   const handleCheckout = () => {
-    const confirmation = window.confirm("Apakah Anda yakin ingin melanjutkan ke checkout?");
-    if (confirmation) {
-      const orderItems = menu_list
-        .filter(item => cartItems[item._id] > 0)
-        .map(item => ({ name: item.name, quantity: cartItems[item._id] }));
+    if (customerInfo.name === "") {
+      setNameError("Nama harus diisi");
+    } else if (customerInfo.tableNumber === "") {
+      setTableNumberError("Nomor meja harus diisi");
+    } else if (Object.keys(cartItems).length === 0) {
+      alert("Anda belum memilih apapun untuk dipesan.");
+    } else {
+      const confirmation = window.confirm("Apakah Anda yakin ingin melanjutkan ke checkout?");
+      if (confirmation) {
+        const orderItems = menu_list
+          .filter(item => cartItems[item._id] > 0)
+          .map(item => ({ name: item.name, quantity: cartItems[item._id] }));
 
-      const checkoutInfo = { orderItems, totalAmount: getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 10000, customerInfo };
-      setCheckoutInfo(checkoutInfo);
+        const checkoutInfo = { orderItems, totalAmount: getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 10000, customerInfo };
+        setCheckoutInfo(checkoutInfo);
 
-      setAdminOrders(prevAdminOrders => [...prevAdminOrders, checkoutInfo]);
+        setAdminOrders(prevAdminOrders => [...prevAdminOrders, checkoutInfo]);
 
-      localStorage.removeItem("cartItems");
-      setCartItems({});
-      setOrderSuccess(true);
+        localStorage.removeItem("cartItems");
+        setCartItems({});
+        setOrderSuccess(true);
+      }
     }
   };
 
@@ -77,6 +87,9 @@ export default function ListCart() {
               value={customerInfo.name}
               onChange={(e) => setCustomerInfo({ ...customerInfo, name: e.target.value })}
             />
+            {nameError !== "" && (
+              <p className="text-red-500 text-sm">{nameError}</p>
+            )}
             <input
               className="w-[334px] text-lg px-4 py-4 rounded-lg font-open_sans bg-slate-200"
               type='number'
@@ -84,6 +97,9 @@ export default function ListCart() {
               value={customerInfo.tableNumber}
               onChange={(e) => setCustomerInfo({ ...customerInfo, tableNumber: e.target.value })}
             />
+            {tableNumberError !== "" && (
+              <p className="text-red-500 text-sm">{tableNumberError}</p>
+            )}
           </div>
         </div>
         <div>
